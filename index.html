@@ -52,7 +52,7 @@
                 <h3>Completa tus datos</h3>
 
                 <div class="form-group">
-                    <label for="fullname">¿Cuál es tu nombre y apellido?</label>
+                    <label for="fullname">¿Nombre y Apellido?</label>
                     <input type="text" id="fullname" required placeholder="Ej. Juan Pérez">
                 </div>
 
@@ -69,7 +69,7 @@
                     <select id="payment_method" required>
                         <option value="" disabled selected>Seleccione</option>
                         <option value="Efectivo">Efectivo</option>
-                        <option value="Mercado Pago">Mercado Pago</option>
+                        <option value="Mercado Pago">Mercado Pago (transferencia)</option>
                     </select>
                 </div>
 
@@ -87,6 +87,20 @@
 
         </div>
     </aside>
+
+    <!-- Modal Nativo HTML con <dialog> -->
+<dialog id="order-modal" class="custom-dialog">
+    <div class="dialog-content">
+        <h3>¡Pedido listo!</h3>
+        <p>Tu orden está preparada para ser enviada por WhatsApp.</p>
+        <div class="dialog-buttons">
+            <button id="modal-back-btn" class="btn-secondary">Volver</button>
+            <button id="modal-whatsapp-btn" class="btn-whatsapp">
+                <i class="fa-brands fa-whatsapp"></i> Enviar por WhatsApp
+            </button>
+        </div>
+    </div>
+</dialog>
 
     <script type="module" src="./js/index.js"></script>
 </body>

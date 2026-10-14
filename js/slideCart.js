@@ -11,6 +11,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const itemsCountSpan = document.getElementById("items-count");
     const cartTotalPrice = document.getElementById("cart-total-price");
     const orderForm = document.getElementById("order-form");
+    const orderModal = document.getElementById("order-modal");
+    const modalBackBtn = document.getElementById("modal-back-btn");
+    const modalWhatsappBtn = document.getElementById("modal-whatsapp-btn");
+    let pendingOrderData = null;
 
     // Datos de ejemplo mapeados (simulando lo que luego vendrá del componente padre/estado global)
     const carritoEjemplo = [
@@ -70,24 +74,55 @@ document.addEventListener("DOMContentLoaded", () => {
         charCount.textContent = currentLength;
     });
 
-    // Manejar el envío del formulario (Simulación de armado de mensaje para WhatsApp)
+    // Guardar el pedido y pedir confirmación antes de abrir WhatsApp.
     orderForm.addEventListener("submit", (e) => {
         e.preventDefault();
 
         const nombre = document.getElementById("fullname").value;
         const tipoEntrega = document.querySelector('input[name="delivery_type"]:checked').value;
         const pago = document.getElementById("payment_method").value;
-        const comentarios = commentsInput.value;
+        const comentarios = commentsInput.value.trim();
 
-        // Aquí puedes estructurar el mensaje que se enviaría por WhatsApp
-        console.log({
+        pendingOrderData = {
             nombre,
-            tipoEntrega,
+            tipoEntrega: tipoEntrega === "envio" ? "📦 Envío a domicilio" : "🏃 Retiro en local",
             pago,
-            comentarios,
-            items: carritoEjemplo
+            comentarios: comentarios !== "" ? comentarios : null,
+            items: carritoEjemplo.map((item) => ({ ...item }))
+        };
+
+        closeCart();
+        orderModal.showModal();
+    });
+
+    modalBackBtn.addEventListener("click", () => {
+        orderModal.close();
+        openCart();
+    });
+
+    modalWhatsappBtn.addEventListener("click", () => {
+        if (!pendingOrderData) return;
+
+        const telefonoLocal = "5491133876028";
+        let mensaje = "*¡Hola! Nuevo Pedido 🛒*\n\n";
+        mensaje += `👤 *Cliente:* ${pendingOrderData.nombre}\n`;
+        mensaje += `📍 *Método:* ${pendingOrderData.tipoEntrega}\n`;
+        mensaje += `💵 *Pago:* ${pendingOrderData.pago}\n\n`;
+        mensaje += "📋 *Detalle del pedido:*\n";
+
+        let totalGeneral = 0;
+        pendingOrderData.items.forEach((item) => {
+            const subtotal = item.cantidad * item.precioUnitario;
+            totalGeneral += subtotal;
+            mensaje += `• ${item.cantidad}x ${item.nombre} ($${subtotal.toLocaleString("es-AR")})\n`;
         });
 
-        alert("¡Pedido listo para enviar por WhatsApp! (Revisa la consola para ver los datos)");
+        mensaje += `\n💰 *TOTAL:* $${totalGeneral.toLocaleString("es-AR")},00\n`;
+        pendingOrderData.comentarios ?
+        mensaje += `📝 *Aclaraciones:* ${pendingOrderData.comentarios}` : null;
+
+
+const urlWhatsApp = `https://api.whatsapp.com/send?phone=${telefonoLocal}&text=${encodeURIComponent(mensaje)}`;        window.open(urlWhatsApp, "_blank", "noopener,noreferrer");
+        orderModal.close();
     });
 });
