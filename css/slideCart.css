@@ -1,0 +1,222 @@
+body {
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+/* Botón de ejemplo inicial */
+.btn-main {
+    background-color: #ff4757;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+.btn-main:hover {
+    background-color: #ff6b81;
+}
+
+/* Overlay oscuro de fondo */
+.cart-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 1000;
+}
+.cart-overlay.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Slide lateral */
+.cart-slide {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    max-width: 450px;
+    height: 100%;
+    background-color: #fff;
+    box-shadow: -4px 0 15px rgba(0, 0, 0, 0.1);
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+    transition: right 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.cart-slide.active {
+    right: 0;
+}
+
+/* Cabecera del slide */
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+}
+.cart-header h2 {
+    font-size: 1.2rem;
+    color: #222;
+}
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: #666;
+}
+
+/* Cuerpo scrolleable del slide */
+.cart-body {
+    padding: 20px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+/* Items mapeados */
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #f1f1f1;
+    font-size: 0.95rem;
+}
+.item-info p {
+    font-weight: 600;
+}
+.item-info span {
+    font-size: 0.85rem;
+    color: #666;
+}
+.item-price {
+    font-weight: bold;
+    color: #222;
+}
+
+/* Total */
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0 15px 0;
+    font-size: 1.1rem;
+    font-weight: bold;
+    background: #fdf2f2;
+    padding: 12px;
+    border-radius: 6px;
+    color: #d63031;
+}
+
+/* Botón volver al menú */
+.btn-secondary {
+    background: none;
+    border: 1px solid #ddd;
+    color: #555;
+    padding: 10px;
+    width: 100%;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    margin-bottom: 15px;
+    transition: background 0.2s;
+}
+.btn-secondary:hover {
+    background: #f5f5f5;
+}
+
+.divider {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 15px 0;
+}
+
+/* Formulario */
+.order-form h3 {
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+    color: #333;
+}
+.form-group {
+    margin-bottom: 15px;
+}
+.form-group label {
+    display: block;
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+    font-weight: 500;
+}
+.form-group input[type="text"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #ff4757;
+}
+
+.form-group textarea {
+    resize: none;
+    height: 75px;
+}
+
+.radio-group {
+    display: flex;
+    gap: 20px;
+    font-size: 0.9rem;
+}
+.radio-group label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+.char-counter {
+    display: block;
+    text-align: right;
+    font-size: 0.75rem;
+    color: #888;
+    margin-top: 4px;
+}
+
+/* Botón WhatsApp */
+.btn-whatsapp {
+    background-color: #25d366;
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background-color 0.2s;
+    margin-top: 10px;
+}
+.btn-whatsapp:hover {
+    background-color: #20ba5a;
+}

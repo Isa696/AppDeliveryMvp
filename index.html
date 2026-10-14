@@ -1,11 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Delivery - Carrito / Pedido</title>
+    <link rel="stylesheet" href="./css/index.css">
+    <!-- FontAwesome para el ícono de WhatsApp -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+
+    <!-- Botón temporal (luego será reemplazado por el de tu compañero) -->
+    <div style="padding: 40px; text-align: center;">
+        <h1>Mi Web de Delivery</h1>
+        <button id="open-cart-btn" class="btn-main">Abrir Carrito / Pedido</button>
+    </div>
+
+    <!-- Overlay de fondo oscuro -->
+    <div id="cart-overlay" class="cart-overlay"></div>
+
+    <!-- Slide lateral desde la derecha -->
+    <aside id="cart-slide" class="cart-slide">
+        
+        <!-- Cabecera -->
+        <div class="cart-header">
+            <h2>Detalle de tu pedido</h2>
+            <button id="close-cart-btn" class="close-btn">&times;</button>
+        </div>
+
+        <!-- Contenido principal del slide -->
+        <div class="cart-body">
+            
+            <!-- Listado de items mapeados (simulando datos del padre) -->
+            <div class="cart-items" id="cart-items-container">
+                <!-- Se inyectará mediante JS de ejemplo -->
+            </div>
+
+            <!-- Total -->
+            <div class="cart-total">
+                <span>TOTAL (<span id="items-count">0</span> items)</span>
+                <span id="cart-total-price">$ 0,00</span>
+            </div>
+
+            <!-- Botón Volver al menú -->
+            <button class="btn-secondary" id="back-to-menu-btn">&lt; Volver al menú</button>
+
+            <hr class="divider">
+
+            <!-- Formulario de datos -->
+            <form id="order-form" class="order-form">
+                <h3>Completa tus datos</h3>
+
+                <div class="form-group">
+                    <label for="fullname">¿Cuál es tu nombre y apellido?</label>
+                    <input type="text" id="fullname" required placeholder="Ej. Juan Pérez">
+                </div>
+
+                <div class="form-group">
+                    <label>¿Te lo enviamos o lo retirás?</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="delivery_type" value="envio" checked> Quiero que me lo envíen</label>
+                        <label><input type="radio" name="delivery_type" value="retiro"> Lo retiro yo mismo</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="payment_method">Forma de Pago</label>
+                    <select id="payment_method" required>
+                        <option value="" disabled selected>Seleccione</option>
+                        <option value="Efectivo">Efectivo</option>
+                        <option value="Mercado Pago">Mercado Pago</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="comments">¿Comentarios / Aclaración?</label>
+                    <textarea id="comments" maxlength="200" placeholder="Detalles sobre el retiro o entrega (máx. 200 caracteres)"></textarea>
+                    <small class="char-counter"><span id="char-count">0</span>/200</small>
+                </div>
+
+                <!-- Botón Solicitar Pedido con ícono de WhatsApp -->
+                <button type="submit" class="btn-whatsapp">
+                    <i class="fa-brands fa-whatsapp"></i> Solicitar pedido
+                </button>
+            </form>
+
+        </div>
+    </aside>
+
     <script type="module" src="./js/index.js"></script>
 </body>
 </html>

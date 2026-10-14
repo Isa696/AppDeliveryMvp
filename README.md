@@ -52,9 +52,12 @@ Crear un flujo mínimo y funcional donde un cliente pueda hacer un pedido, el co
 ├──  index.html
 ├──  admin.html
 ├──  css
+│ └── /index.css
+│ └── /slideCart.css
 ├──  js
-│ └── /idex.js
 │ └── /admin.js
+│ └── /idex.js
+│ └── /slideCart.js
 ├── /backend
 │ ├── src/
 │ └── db/
