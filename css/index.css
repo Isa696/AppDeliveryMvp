@@ -1,13 +1,221 @@
 @import "./slideCart.css";
 
+/* Reset general */
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
-    background-color: #f9f9f9;
-    color: #333;
+  background-color: #f8f9fa;
+  color: #333;
+  padding-bottom: 90px;
+}
+
+/* Header y logo */
+.header {
+  text-align: center;
+  padding: 25px 15px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.logo-circle {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background-color: #1a1a1a;
+  border: 3px solid #d49a37;
+  color: #ffffff;
+  margin: 0 auto 15px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.logo-circle h1 {
+  font-family: 'Georgia', serif;
+  font-size: 1.8rem;
+  color: #e5a024;
+  font-style: italic;
+  line-height: 1;
+}
+
+.logo-circle span {
+  font-size: 0.55rem;
+  letter-spacing: 1px;
+  margin-top: 4px;
+}
+
+.sucursal-titulo {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.info-item {
+  font-size: 0.9rem;
+  color: #555;
+  margin: 4px 0;
+}
+
+.mp-info {
+  font-size: 0.9rem;
+  margin: 8px 0;
+  color: #444;
+}
+
+.horarios {
+  font-size: 0.8rem;
+  color: #777;
+  margin-top: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* Contenedor del Menú */
+#menu-container {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 12px;
+}
+
+.banner-categoria {
+  background-color: #5d534a;
+  color: #ffffff;
+  text-align: center;
+  padding: 12px;
+  margin: 25px 0 15px 0;
+  border-radius: 4px;
+}
+
+.banner-categoria h2 {
+  font-size: 1.15rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.banner-categoria p {
+  font-size: 0.85rem;
+  margin-top: 4px;
+  font-weight: 300;
+  opacity: 0.9;
+}
+
+/* Tarjeta de producto */
+.item-plato {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 8px;
+  border-bottom: 1px dashed #d1d1d1;
+  background-color: #ffffff;
+}
+
+.plato-info-flex {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  padding-right: 10px;
+}
+
+.plato-img {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #eee;
+  border: 1px solid #ddd;
+}
+
+.plato-titulo {
+  color: #d49a37;
+  font-size: 0.95rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.plato-desc {
+  color: #666;
+  font-size: 0.8rem;
+  margin-top: 3px;
+  line-height: 1.2;
+}
+
+.precio {
+  font-weight: bold;
+  font-size: 1.05rem;
+  text-align: right;
+  color: #222;
+}
+
+/* Contador de unidades (+ / -) */
+.contador {
+  display: flex;
+  align-items: center;
+  border: 1px solid #bbb;
+  background: #fff;
+  margin-top: 6px;
+  border-radius: 4px;
+  overflow: hidden;
+  justify-content: space-between;
+}
+
+.contador button {
+  border: none;
+  background: #f0f0f0;
+  padding: 4px 12px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+  color: #333;
+  transition: background 0.2s;
+}
+
+.contador button:hover {
+  background: #e0e0e0;
+}
+
+.contador span {
+  padding: 4px 10px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  min-width: 24px;
+  text-align: center;
+}
+
+/* Botón flotante inferior */
+.floating-cart {
+  position: fixed;
+  bottom: 18px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 99;
+}
+
+.cart-btn, #open-cart-btn {
+  pointer-events: auto;
+  background-color: #5d534a;
+  color: #ffffff;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 25px;
+  font-size: 0.95rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.cart-btn:hover, #open-cart-btn:hover {
+  background-color: #4a423a;
+  transform: translateY(-2px);
 }

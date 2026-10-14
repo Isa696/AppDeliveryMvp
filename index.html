@@ -3,105 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delivery - Carrito / Pedido</title>
+    <title>Olivia - Empanadas & Pizzas</title>
     <link rel="stylesheet" href="./css/index.css">
-    <!-- FontAwesome para el ícono de WhatsApp -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./css/slideCart.css">
 </head>
 <body>
 
-    <!-- Botón temporal (luego será reemplazado por el de tu compañero) -->
-    <div style="padding: 40px; text-align: center;">
-        <h1>Mi Web de Delivery</h1>
-        <button id="open-cart-btn" class="btn-main">Abrir Carrito / Pedido</button>
+    <!-- 1. ENCABEZADO DE LA ROTISERÍA -->
+    <header class="header">
+        <div class="logo-circle">
+            <h1>Olivia</h1>
+            <span>EMPANADAS & PIZZAS</span>
+        </div>
+        <h2>Sucursal Devoto</h2>
+        <p class="info-item">📍 Av. Beiró 3894, Devoto</p>
+        <p class="info-item">📞 5491172120298</p>
+        <p class="info-item">📷 @olivia.devoto</p>
+        <p class="mp-info">Mercado Pago: <strong>olivia.devoto</strong></p>
+        <p class="horarios">DELIVERY POR LA NOCHE DE JUEVES A DOMINGOS - PRE FERIADOS - FERIADOS</p>
+    </header>
+
+    <!-- 2. CONTENEDOR DONDE SE DIBUJA EL MENÚ DINÁMICO -->
+    <main class="container" id="menu-container">
+        <!-- JavaScript renderiza las categorías y platos acá con .map() -->
+    </main>
+
+    <!-- 3. BOTÓN FLOTANTE INFERIOR -->
+    <div class="floating-cart">
+        <button id="open-cart-btn" class="cart-btn">🛒 Ver tu pedido $0</button>
     </div>
 
-    <!-- Overlay de fondo oscuro -->
+    <!-- 4. FONDO OSCURO (OVERLAY) -->
     <div id="cart-overlay" class="cart-overlay"></div>
 
-    <!-- Slide lateral desde la derecha -->
+    <!-- 5. SLIDE / MENÚ LATERAL DEL CARRITO -->
     <aside id="cart-slide" class="cart-slide">
-        
-        <!-- Cabecera -->
         <div class="cart-header">
             <h2>Detalle de tu pedido</h2>
             <button id="close-cart-btn" class="close-btn">&times;</button>
         </div>
 
-        <!-- Contenido principal del slide -->
         <div class="cart-body">
-            
-            <!-- Listado de items mapeados (simulando datos del padre) -->
-            <div class="cart-items" id="cart-items-container">
-                <!-- Se inyectará mediante JS de ejemplo -->
+            <!-- Items agregados en vivo -->
+            <div id="cart-items-container">
+                <p style="text-align: center; color: #777;">El carrito está vacío</p>
             </div>
 
-            <!-- Total -->
-            <div class="cart-total">
+            <div class="cart-total-box">
                 <span>TOTAL (<span id="items-count">0</span> items)</span>
-                <span id="cart-total-price">$ 0,00</span>
+                <span id="cart-total-price" class="total-amount">$ 0,00</span>
             </div>
 
-            <!-- Botón Volver al menú -->
-            <button class="btn-secondary" id="back-to-menu-btn">&lt; Volver al menú</button>
+            <button id="back-to-menu-btn" class="back-btn">&lt; Volver al menú</button>
 
-            <hr class="divider">
-
-            <!-- Formulario de datos -->
+            <!-- FORMULARIO DE DATOS -->
             <form id="order-form" class="order-form">
                 <h3>Completa tus datos</h3>
 
-                <div class="form-group">
-                    <label for="fullname">¿Nombre y Apellido?</label>
-                    <input type="text" id="fullname" required placeholder="Ej. Juan Pérez">
+                <label for="fullname">¿Nombre y Apellido?</label>
+                <input type="text" id="fullname" placeholder="Ej. Juan Pérez" required>
+
+                <label>¿Te lo enviamos o lo retirás?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="delivery_type" value="envio" checked> Quiero que me lo envíen</label>
+                    <label><input type="radio" name="delivery_type" value="retiro"> Lo retiro yo mismo</label>
                 </div>
 
-                <div class="form-group">
-                    <label>¿Te lo enviamos o lo retirás?</label>
-                    <div class="radio-group">
-                        <label><input type="radio" name="delivery_type" value="envio" checked> Quiero que me lo envíen</label>
-                        <label><input type="radio" name="delivery_type" value="retiro"> Lo retiro yo mismo</label>
-                    </div>
-                </div>
+                <label for="payment_method">Forma de Pago</label>
+                <select id="payment_method" required>
+                    <option value="" disabled selected>Seleccione</option>
+                    <option value="Mercado Pago">Mercado Pago</option>
+                    <option value="Efectivo">Efectivo</option>
+                    
+                </select>
 
-                <div class="form-group">
-                    <label for="payment_method">Forma de Pago</label>
-                    <select id="payment_method" required>
-                        <option value="" disabled selected>Seleccione</option>
-                        <option value="Efectivo">Efectivo</option>
-                        <option value="Mercado Pago">Mercado Pago (transferencia)</option>
-                    </select>
-                </div>
+                <label for="comments">¿Comentarios / Aclaración?</label>
+                <textarea id="comments" maxlength="200" placeholder="Detalles sobre el retiro o entrega (máx. 200 caracteres)"></textarea>
+                <div class="char-counter"><span id="char-count">0</span>/200</div>
 
-                <div class="form-group">
-                    <label for="comments">¿Comentarios / Aclaración?</label>
-                    <textarea id="comments" maxlength="200" placeholder="Detalles sobre el retiro o entrega (máx. 200 caracteres)"></textarea>
-                    <small class="char-counter"><span id="char-count">0</span>/200</small>
-                </div>
-
-                <!-- Botón Solicitar Pedido con ícono de WhatsApp -->
-                <button type="submit" class="btn-whatsapp">
-                    <i class="fa-brands fa-whatsapp"></i> Solicitar pedido
-                </button>
+                <button type="submit" class="submit-btn">Solicitar pedido</button>
             </form>
-
         </div>
     </aside>
 
-    <!-- Modal Nativo HTML con <dialog> -->
-<dialog id="order-modal" class="custom-dialog">
-    <div class="dialog-content">
-        <h3>¡Pedido listo!</h3>
-        <p>Tu orden está preparada para ser enviada por WhatsApp.</p>
-        <div class="dialog-buttons">
-            <button id="modal-back-btn" class="btn-secondary">Volver</button>
-            <button id="modal-whatsapp-btn" class="btn-whatsapp">
-                <i class="fa-brands fa-whatsapp"></i> Enviar por WhatsApp
-            </button>
+    <!-- 6. MODAL DE CONFIRMACIÓN -->
+    <dialog id="order-modal" class="order-modal">
+        <h3>¿Confirmar pedido por WhatsApp?</h3>
+        <p>Serás redirigido a WhatsApp para enviar el detalle de tu compra directamente a la sucursal.</p>
+        <div class="modal-actions">
+            <button id="modal-back-btn" class="modal-btn cancel">Volver</button>
+            <button id="modal-whatsapp-btn" class="modal-btn confirm">Enviar a WhatsApp</button>
         </div>
-    </div>
-</dialog>
+    </dialog>
 
     <script type="module" src="./js/index.js"></script>
+    
 </body>
 </html>
