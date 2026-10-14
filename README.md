@@ -1,6 +1,3 @@
-Perfecto, ahí te lo simplifico a tu stack real para no confundir a tus compañeros. Ya queda listo para hacer push desde VSC.
-
-Pegá esto en tu `README.md`:
 # 🛵 AppDelivery MVP
 
 
