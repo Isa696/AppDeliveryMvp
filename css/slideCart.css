@@ -259,3 +259,93 @@
     margin-top: 4px !important;
     padding-left: 10px !important;
 }
+/* Estilos para el elemento <dialog> nativo */
+.order-modal {
+    border: none;
+    border-radius: 12px;
+    padding: 0;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.2s ease-in-out;
+    margin: auto;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+/* Fondo oscuro detrás del modal nativo */
+.order-modal::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.order-modal-content {
+    padding: 25px;
+    text-align: center;
+}
+
+.order-modal-content h3 {
+    font-size: 1.3rem;
+    color: #222;
+    margin-bottom: 10px;
+}
+
+.order-modal-content p {
+    color: #666;
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.modal-actions button {
+    flex: 1;
+    margin-bottom: 0 !important;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+/* Botón modal confirmar */
+.modal-whatsapp-btn {
+    background-color: #25d366;
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background-color 0.2s;
+}
+.modal-whatsapp-btn:hover {
+    background-color: #20ba5a;
+}
+
+/* Botón volver al menú */
+.modal-back-btn {
+    background: none;
+    border: 1px solid #ddd;
+    color: #555;
+    padding: 10px;
+    width: 100%;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    margin-bottom: 15px;
+    transition: background 0.2s;
+}
+.modal-back-btn:hover {
+    background: #f5f5f5;
+}
