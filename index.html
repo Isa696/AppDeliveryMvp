@@ -1,11 +1,104 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Olivia - Empanadas & Pizzas</title>
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/slideCart.css">
 </head>
 <body>
-    <script type="module" src="index.js"></script>
+
+    <!-- 1. ENCABEZADO DE LA ROTISERÍA -->
+    <header class="header">
+        <div class="logo-circle">
+            <h1>Olivia</h1>
+            <span>EMPANADAS & PIZZAS</span>
+        </div>
+        <h2>Sucursal Devoto</h2>
+        <p class="info-item">📍 Av. Beiró 3894, Devoto</p>
+        <p class="info-item">📞 5491172120298</p>
+        <p class="info-item">📷 @olivia.devoto</p>
+        <p class="mp-info">Mercado Pago: <strong>olivia.devoto</strong></p>
+        <p class="horarios">DELIVERY POR LA NOCHE DE JUEVES A DOMINGOS - PRE FERIADOS - FERIADOS</p>
+    </header>
+
+    <!-- 2. CONTENEDOR DONDE SE DIBUJA EL MENÚ DINÁMICO -->
+    <main class="container" id="menu-container">
+        <!-- JavaScript renderiza las categorías y platos acá con .map() -->
+    </main>
+
+    <!-- 3. BOTÓN FLOTANTE INFERIOR -->
+    <div class="floating-cart">
+        <button id="open-cart-btn" class="cart-btn">🛒 Ver tu pedido $0</button>
+    </div>
+
+    <!-- 4. FONDO OSCURO (OVERLAY) -->
+    <div id="cart-overlay" class="cart-overlay"></div>
+
+    <!-- 5. SLIDE / MENÚ LATERAL DEL CARRITO -->
+    <aside id="cart-slide" class="cart-slide">
+        <div class="cart-header">
+            <h2>Detalle de tu pedido</h2>
+            <button id="close-cart-btn" class="close-btn">&times;</button>
+        </div>
+
+        <div class="cart-body">
+            <!-- Items agregados en vivo -->
+            <div id="cart-items-container">
+                <p style="text-align: center; color: #777;">El carrito está vacío</p>
+            </div>
+
+            <div class="cart-total-box">
+                <span>TOTAL (<span id="items-count">0</span> items)</span>
+                <span id="cart-total-price" class="total-amount">$ 0,00</span>
+            </div>
+
+            <button id="back-to-menu-btn" class="back-btn">&lt; Volver al menú</button>
+
+            <!-- FORMULARIO DE DATOS -->
+            <form id="order-form" class="order-form">
+                <h3>Completa tus datos</h3>
+
+                <label for="fullname">¿Nombre y Apellido?</label>
+                <input type="text" id="fullname" placeholder="Ej. Juan Pérez" required>
+
+                <label>¿Te lo enviamos o lo retirás?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="delivery_type" value="envio" checked> Quiero que me lo envíen</label>
+                    <label><input type="radio" name="delivery_type" value="retiro"> Lo retiro yo mismo</label>
+                </div>
+
+                <label for="payment_method">Forma de Pago</label>
+                <select id="payment_method" required>
+                    <option value="" disabled selected>Seleccione</option>
+                    <option value="Mercado Pago">Mercado Pago</option>
+                    <option value="Efectivo">Efectivo</option>
+                    
+                </select>
+
+                <label for="comments">¿Comentarios / Aclaración?</label>
+                <textarea id="comments" maxlength="200" placeholder="Detalles sobre el retiro o entrega (máx. 200 caracteres)"></textarea>
+                <div class="char-counter"><span id="char-count">0</span>/200</div>
+
+                <button type="submit" class="submit-btn">Solicitar pedido</button>
+            </form>
+        </div>
+    </aside>
+
+    <!-- 6. MODAL DE CONFIRMACIÓN -->
+    <dialog id="order-modal" class="order-modal">
+        <div class="order-modal-content">
+            <h3>¿Confirmar pedido por WhatsApp?</h3>
+            <p>Serás redirigido a WhatsApp para enviar el detalle de tu compra directamente a la sucursal.</p>
+            <div class="modal-actions">
+                <button id="modal-back-btn" class="modal-back-btn">Volver</button>
+                <button id="modal-whatsapp-btn" class="modal-whatsapp-btn">Enviar a WhatsApp</button>
+            </div>
+        </div>
+    </dialog>
+
+    <script type="module" src="./js/index.js"></script>
+    
 </body>
 </html>
