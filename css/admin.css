@@ -1,0 +1,136 @@
+/* Estilos propios del acceso y del panel administrador. */
+.admin-container {
+  width: min(100% - 28px, 1100px);
+  margin: 28px auto 60px;
+}
+
+.admin-card {
+  background: #fff;
+  border: 1px solid #e6e2de;
+  border-radius: 12px;
+  box-shadow: 0 5px 18px rgba(40, 32, 25, .07);
+  padding: 22px;
+}
+
+.admin-card h2,
+.admin-card h3 {
+  color: #38312c;
+  margin-bottom: 8px;
+}
+
+.admin-card > p,
+.panel-heading p {
+  color: #716a64;
+  margin-bottom: 18px;
+}
+
+.login-card {
+  max-width: 430px;
+  margin: 50px auto;
+}
+
+.admin-container form label {
+  display: block;
+  color: #48413b;
+  font-weight: 600;
+  margin: 13px 0 6px;
+}
+
+.admin-container form input,
+.admin-container form textarea,
+.admin-container form select {
+  width: 100%;
+  border: 1px solid #cfc8c1;
+  border-radius: 7px;
+  padding: 11px 12px;
+  font: inherit;
+  background: #fff;
+}
+
+.admin-container form input:focus,
+.admin-container form textarea:focus,
+.admin-container form select:focus {
+  outline: 2px solid #d49a37;
+  border-color: transparent;
+}
+
+.admin-button {
+  display: inline-block;
+  border: 0;
+  border-radius: 7px;
+  padding: 10px 15px;
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.primary-button { background: #5d534a; }
+.primary-button:hover { background: #433b35; }
+.secondary-button { background: #ece8e4; color: #433b35; }
+.secondary-button:hover { background: #ddd7d1; }
+.danger-button { background: #a43f36; color: #fff; }
+.danger-button:hover { background: #87332c; }
+
+.login-card .primary-button,
+.category-form .primary-button,
+.form-actions .primary-button {
+  margin-top: 18px;
+}
+
+.login-card .primary-button { width: 100%; }
+.text-link { display: block; margin-top: 18px; color: #675b50; text-align: center; }
+.message { min-height: 20px; color: #a43f36; font-size: .9rem; margin-top: 10px; }
+
+.panel-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.panel-heading h2 { margin-bottom: 5px; }
+.panel-heading p { margin: 0; }
+.admin-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.form-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.category-form { border-bottom: 1px solid #ece8e4; padding-bottom: 18px; }
+
+.category-list { list-style: none; padding: 0; margin: 14px 0 0; }
+.category-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid #f0ece8;
+}
+.category-actions { display: flex; gap: 6px; }
+.small-button { border: 0; border-radius: 5px; padding: 6px 8px; cursor: pointer; background: #ece8e4; color: #433b35; }
+.small-button.danger-button { background: #a43f36; color: #fff; }
+
+.product-list-card,
+.preview-card { margin-top: 18px; }
+.managed-product {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid #eee9e4;
+}
+.managed-product h4 { color: #51473f; margin-bottom: 4px; }
+.managed-product p { color: #716a64; font-size: .9rem; margin-top: 3px; }
+.product-actions { display: flex; gap: 8px; flex-shrink: 0; }
+.product-actions .admin-button { font-size: .9rem; }
+.preview-card #menu-container { padding: 0; max-width: 680px; }
+.preview-link { margin-top: 18px; }
+
+@media (max-width: 720px) {
+  .admin-grid { grid-template-columns: 1fr; }
+  .panel-heading { align-items: flex-start; flex-direction: column; }
+  .managed-product { align-items: flex-start; flex-direction: column; }
+  .category-list li { align-items: flex-start; flex-direction: column; }
+}

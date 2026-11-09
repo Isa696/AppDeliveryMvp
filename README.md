@@ -70,6 +70,15 @@ git clone https://github.com/Isa696/AppDeliveryMvp.git
 4. Frontend
 Abrir `index.html` con Live Server o abrir directo en el navegador.
 
+### Panel de administración (modo de práctica)
+
+1. Iniciar el proyecto con Live Server para que el navegador pueda cargar los módulos JavaScript.
+2. Abrir `admin.html`.
+3. Ingresar con el usuario `pepito2008` y la contraseña `hellodude!`.
+4. Agregar, editar o eliminar productos y categorías. Los cambios se guardan en `localStorage` y la página `index.html` los lee desde el mismo navegador.
+
+Este acceso es solo una demostración de frontend: las credenciales están en JavaScript y cualquiera puede verlas desde el navegador. Para usarlo en una web publicada hace falta validar el inicio de sesión en un backend y guardar el menú en una base de datos para compartir los cambios con otros dispositivos.
+
 ---
 
 ## 👥 Integrantes

@@ -1,13 +1,114 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>admin</title>
+    <title>Administración | Olivia</title>
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/admin.css">
 </head>
 <body>
-    <h1>Admin Page</h1>
-    <p>Aqui crearia karim el formulario</p>
-        <script type="module" src="./js/index.js"></script>
+    <!-- Encabezado compartido visualmente con la página del menú. -->
+    <header class="header">
+        <div class="logo-circle">
+            <h1>Olivia</h1>
+            <span>EMPANADAS & PIZZAS</span>
+        </div>
+        <h2 class="sucursal-titulo">Panel de administración</h2>
+        <p class="info-item">Administrá las categorías y los productos del menú.</p>
+    </header>
+
+    <main class="admin-container">
+        <!-- Esta tarjeta se muestra primero. JavaScript valida los datos ingresados. -->
+        <section id="login-panel" class="admin-card login-card">
+            <h2>Inicio de sesión</h2>
+            <p>Ingresá con los datos de administrador.</p>
+            <form id="login-form">
+                <label for="username">Usuario</label>
+                <input id="username" name="username" type="text" autocomplete="username" required>
+
+                <label for="password">Contraseña</label>
+                <input id="password" name="password" type="password" autocomplete="current-password" required>
+
+                <p id="login-message" class="message" aria-live="polite"></p>
+                <button class="admin-button primary-button" type="submit">Ingresar</button>
+            </form>
+            <a class="text-link" href="./index.html">Volver al menú de clientes</a>
+        </section>
+
+        <!-- El panel queda oculto hasta iniciar sesión correctamente. -->
+        <section id="admin-panel" hidden>
+            <div class="panel-heading">
+                <div>
+                    <h2>Editar menú</h2>
+                    <p>Los cambios se guardan en este navegador y se ven en la página del menú.</p>
+                </div>
+                <button id="logout-button" class="admin-button secondary-button" type="button">Cerrar sesión</button>
+            </div>
+
+            <div class="admin-grid">
+                <section class="admin-card">
+                    <h3 id="product-form-title">Agregar producto</h3>
+                    <!-- El mismo formulario sirve para crear y editar un producto. -->
+                    <form id="product-form">
+                        <input id="product-id" type="hidden">
+
+                        <label for="product-category">Categoría</label>
+                        <select id="product-category" required></select>
+
+                        <label for="product-name">Nombre</label>
+                        <input id="product-name" type="text" maxlength="80" required>
+
+                        <label for="product-description">Descripción</label>
+                        <textarea id="product-description" rows="3" maxlength="180"></textarea>
+
+                        <label for="product-price">Precio (pesos)</label>
+                        <input id="product-price" type="number" min="0" step="1" required>
+
+                        <label for="product-image">URL de imagen</label>
+                        <input id="product-image" type="url" placeholder="https://...">
+
+                        <div class="form-actions">
+                            <button class="admin-button primary-button" type="submit">Guardar producto</button>
+                            <button id="cancel-edit-button" class="admin-button secondary-button" type="button" hidden>Cancelar edición</button>
+                        </div>
+                    </form>
+                </section>
+
+                <section class="admin-card">
+                    <h3>Categorías</h3>
+                    <form id="category-form" class="category-form">
+                        <label for="category-name">Nueva categoría</label>
+                        <input id="category-name" type="text" maxlength="80" placeholder="Ej. Pizzas" required>
+                        <label for="category-subtitle">Subtítulo (opcional)</label>
+                        <input id="category-subtitle" type="text" maxlength="120">
+                        <button class="admin-button primary-button" type="submit">Agregar categoría</button>
+                    </form>
+                    <ul id="category-list" class="category-list"></ul>
+                </section>
+            </div>
+
+            <!-- Aquí se muestra el menú real, con el carrito y el flujo de pedido habilitados. -->
+            <section class="admin-card product-list-card">
+                <h3>Productos del menú</h3>
+                <div id="product-list" class="product-list"></div>
+            </section>
+
+            <section class="admin-card preview-card">
+                <h3>Menú actual</h3>
+                <div id="menu-container" class="container"></div>
+                <a class="admin-button secondary-button preview-link" href="./index.html" target="_blank" rel="noopener">Abrir página del cliente</a>
+            </section>
+
+            <!-- Estos elementos permiten usar el mismo carrito y envío del pedido que en index.html. -->
+            <div class="floating-cart">
+                <button id="open-cart-btn" class="cart-btn" type="button">🛒 Ver tu pedido $0</button>
+            </div>
+            <div id="cart-overlay" class="cart-overlay"></div>
+            <aside id="cart-slide" class="cart-slide"></aside>
+        </section>
+    </main>
+
+    <script type="module" src="./js/admin.js"></script>
 </body>
 </html>
