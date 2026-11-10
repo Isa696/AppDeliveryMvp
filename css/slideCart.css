@@ -134,6 +134,36 @@
     color: #000000 !important;
 }
 
+.item-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.quantity-controls button {
+    min-width: 30px;
+    height: 30px;
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+    background: #ffffff;
+    color: #333333;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.quantity-controls .remove-cart-item {
+    border-color: #e5b7b7;
+    color: #b42318;
+}
+
 /* Caja Total */
 .cart-summary {
     background-color: #ededed !important;

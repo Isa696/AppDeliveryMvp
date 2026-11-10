@@ -49,18 +49,18 @@ Crear un flujo mínimo y funcional donde un cliente pueda hacer un pedido, el co
 /appdelivery-mvp
 ├── /docs
 │ └── /images
-├──  index.html
-├──  admin.html
 ├──  css
+│ └── /admin.css
 │ └── /index.css
 │ └── /slideCart.css
 ├──  js
 │ └── /admin.js
 │ └── /idex.js
+│ └── /menuData.js
 │ └── /slideCart.js
 ├── /backend
-│ ├── src/
-│ └── db/
+├──  index.html
+├──  admin.html
 └── README.md
 ## 🚀 Cómo correr el proyecto local
 

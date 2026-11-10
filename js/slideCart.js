@@ -100,10 +100,17 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!carritoGuardado) return [];
         const datos = JSON.parse(carritoGuardado);
         return Object.values(datos).map(item => ({
+            id: item.id,
             nombre: item.nombre,
             cantidad: item.cantidad,
             precioUnitario: item.precio || item.precioUnitario || 0
         }));
+    }
+
+    function escaparHTML(texto = "") {
+        return String(texto).replace(/[&<>"']/g, caracter => ({
+            "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;"
+        })[caracter]);
     }
 
     function renderCart(items) {
@@ -127,10 +134,17 @@ document.addEventListener("DOMContentLoaded", () => {
             const itemHTML = `
                 <div class="cart-item">
                     <div class="item-info">
-                        <p>${item.nombre}</p>
+                        <p>${escaparHTML(item.nombre)}</p>
                         <span>Cant.: ${item.cantidad} x $${item.precioUnitario}</span>
                     </div>
-                    <div class="item-price">$ ${subtotal.toLocaleString("es-AR")}</div>
+                    <div class="item-controls">
+                        <div class="item-price">$ ${subtotal.toLocaleString("es-AR")}</div>
+                        <div class="quantity-controls">
+                            <button type="button" data-cart-action="decrease" data-id="${escaparHTML(item.id)}" aria-label="Restar ${escaparHTML(item.nombre)}">−</button>
+                            <button type="button" data-cart-action="increase" data-id="${escaparHTML(item.id)}" aria-label="Sumar ${escaparHTML(item.nombre)}">+</button>
+                            <button type="button" class="remove-cart-item" data-cart-action="remove" data-id="${escaparHTML(item.id)}" aria-label="Eliminar ${escaparHTML(item.nombre)}" title="Eliminar producto">🗑</button>
+                        </div>
+                    </div>
                 </div>
             `;
             itemsContainer.innerHTML += itemHTML;
@@ -139,6 +153,36 @@ document.addEventListener("DOMContentLoaded", () => {
         itemsCountSpan.textContent = totalItems;
         cartTotalPrice.textContent = `$ ${total.toLocaleString("es-AR")},00`;
     }
+
+    itemsContainer.addEventListener("click", evento => {
+        const boton = evento.target.closest("button[data-cart-action]");
+        if (!boton) return;
+
+        const carrito = JSON.parse(localStorage.getItem("carrito_olivia") || "{}");
+        const id = boton.dataset.id;
+        const item = carrito[id];
+        if (!item) return;
+
+        if (boton.dataset.cartAction === "increase") {
+            item.cantidad += 1;
+        } else if (boton.dataset.cartAction === "decrease") {
+            item.cantidad -= 1;
+            if (item.cantidad <= 0) delete carrito[id];
+        } else if (boton.dataset.cartAction === "remove") {
+            delete carrito[id];
+        }
+
+        localStorage.setItem("carrito_olivia", JSON.stringify(carrito));
+        const cantidadSpan = document.getElementById(`cant-${id}`);
+        if (cantidadSpan) cantidadSpan.textContent = carrito[id]?.cantidad || 0;
+
+        const totalCarrito = Object.values(carrito).reduce(
+            (total, producto) => total + (producto.precio || producto.precioUnitario || 0) * producto.cantidad,
+            0
+        );
+        if (openBtn) openBtn.textContent = `🛒 Ver tu pedido $${totalCarrito.toLocaleString("es-AR")}`;
+        window.dispatchEvent(new Event("carritoActualizado"));
+    });
 
     function openCart() {
         renderCart(obtenerCarritoActual());
