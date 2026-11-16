@@ -111,3 +111,4 @@ window.addEventListener("menuActualizado", () => {
   menuOlivia = cargarMenu();
   renderizarMenu();
 });
+

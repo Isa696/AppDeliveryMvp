@@ -76,15 +76,38 @@
                 </section>
 
                 <section class="admin-card">
-                    <h3>Categorías</h3>
-                    <form id="category-form" class="category-form">
-                        <label for="category-name">Nueva categoría</label>
-                        <input id="category-name" type="text" maxlength="80" placeholder="Ej. Pizzas" required>
-                        <label for="category-subtitle">Subtítulo (opcional)</label>
-                        <input id="category-subtitle" type="text" maxlength="120">
-                        <button class="admin-button primary-button" type="submit">Agregar categoría</button>
+    <h3>Categorías</h3>
+    <form id="category-form" class="category-form">
+        <!-- Campo oculto para saber si estamos editando una categoría -->
+        <input id="category-id" type="hidden">
+
+        <label for="category-name">Nueva categoría</label>
+        <input id="category-name" type="text" maxlength="80" placeholder="Ej. Pizzas" required>
+        
+        <label for="category-subtitle">Subtítulo (opcional)</label>
+        <input id="category-subtitle" type="text" maxlength="120">
+
+        <div class="form-actions">
+            <button id="category-submit-btn" class="admin-button primary-button" type="submit">Agregar categoría</button>
+            <button id="cancel-category-edit" class="admin-button secondary-button" type="button" hidden>Cancelar</button>
+        </div>
+    </form>
+    <ul id="category-list" class="category-list"></ul>
+</section>
+
+                <!-- NUEVA TARJETA: Actualización masiva de precios por categoría -->
+                <section class="admin-card">
+                    <h3>Actualizar precios por categoría</h3>
+                    <p>Modificá el precio de <strong>todos</strong> los productos de una categoría al mismo tiempo.</p>
+                    <form id="mass-price-form">
+                        <label for="mass-category">Seleccionar categoría</label>
+                        <select id="mass-category" required></select>
+
+                        <label for="mass-price">Nuevo precio unificado ($)</label>
+                        <input id="mass-price" type="number" min="0" step="1" required>
+
+                        <button class="admin-button primary-button" type="submit">Actualizar toda la categoría</button>
                     </form>
-                    <ul id="category-list" class="category-list"></ul>
                 </section>
             </div>
 
